@@ -17,8 +17,21 @@ export default function HomePage() {
   const handleBuildImported = (build: Build) => {
     setImportedBuild(build);
 
-    // Store in localStorage for now (will add proper state management later)
-    localStorage.setItem('currentBuild', JSON.stringify(build));
+    // Serialize build for localStorage (convert Set/Map to arrays)
+    const serializedBuild = {
+      ...build,
+      passiveTree: {
+        ...build.passiveTree,
+        allocatedNodes: Array.from(build.passiveTree.allocatedNodes),
+        masterySelections: Array.from(build.passiveTree.masterySelections.entries()),
+      },
+      items: {
+        ...build.items,
+        slots: Array.from(build.items.slots.entries()),
+      },
+    };
+
+    localStorage.setItem('currentBuild', JSON.stringify(serializedBuild));
 
     // Navigate to build view
     router.push(`/build/${build.id}`);

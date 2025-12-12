@@ -36,13 +36,14 @@ export default function BuildPage() {
         // Convert Date strings back to Date objects
         parsedBuild.source.importedAt = new Date(parsedBuild.source.importedAt);
 
-        // Convert Set and Map from JSON
+        // Convert arrays back to Set and Map
         parsedBuild.passiveTree.allocatedNodes = new Set(
           parsedBuild.passiveTree.allocatedNodes
         );
         parsedBuild.passiveTree.masterySelections = new Map(
           parsedBuild.passiveTree.masterySelections
         );
+        parsedBuild.items.slots = new Map(parsedBuild.items.slots);
 
         setBuild(parsedBuild);
       }
