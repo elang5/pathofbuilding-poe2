@@ -14,6 +14,14 @@ import { SkillsDisplay } from '@/components/build/SkillsDisplay';
 import { ItemsDisplay } from '@/components/build/ItemsDisplay';
 import { StatsEducational } from '@/components/build/StatsEducational';
 import { CoachingSection } from '@/components/coaching/CoachingSection';
+import { DamageBreakdown } from '@/components/analysis/DamageBreakdown';
+import { DefenseAnalysis } from '@/components/analysis/DefenseAnalysis';
+import { BottleneckCard } from '@/components/analysis/BottleneckCard';
+import { SuggestionsList } from '@/components/analysis/SuggestionsList';
+import { analyzeDamage } from '@/lib/analysis/damage';
+import { analyzeDefense } from '@/lib/analysis/defense';
+import { analyzeBottlenecks } from '@/lib/analysis/bottlenecks';
+import { generateSuggestions } from '@/lib/analysis/suggestions';
 import type { Build } from '@/lib/domain';
 
 export default function BuildPage() {
@@ -86,6 +94,12 @@ export default function BuildPage() {
     );
   }
 
+  // Run analysis on the build
+  const damageAnalysis = analyzeDamage(build);
+  const defenseAnalysis = analyzeDefense(build);
+  const bottleneckAnalysis = analyzeBottlenecks(build);
+  const suggestions = generateSuggestions(build);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -112,10 +126,25 @@ export default function BuildPage() {
           {/* Overview */}
           <BuildOverview build={build} />
 
+          {/* Build Health Report - Top Priority */}
+          <BottleneckCard analysis={bottleneckAnalysis} />
+
+          {/* Two Column Layout - Analysis */}
+          <div className="grid gap-6 lg:grid-cols-2">
+            {/* Damage Analysis */}
+            <DamageBreakdown analysis={damageAnalysis} />
+
+            {/* Defense Analysis */}
+            <DefenseAnalysis analysis={defenseAnalysis} />
+          </div>
+
+          {/* Actionable Suggestions */}
+          <SuggestionsList suggestions={suggestions} />
+
           {/* Educational Stats Breakdown */}
           <StatsEducational build={build} />
 
-          {/* Two Column Layout */}
+          {/* Two Column Layout - Passive Tree & Config */}
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Passive Tree */}
             <PassiveTreeSummary tree={build.passiveTree} />
