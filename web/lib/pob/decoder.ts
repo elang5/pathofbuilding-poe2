@@ -140,9 +140,12 @@ export function decodePobCode(pobCode: string): DecodeResult {
 
     // Check for XML declaration or PathOfBuilding root element
     const isValidXmlStart =
-      trimmedXml.startsWith('<?xml') || trimmedXml.startsWith('<PathOfBuilding');
+      trimmedXml.startsWith('<?xml') ||
+      trimmedXml.startsWith('<PathOfBuilding2') ||
+      trimmedXml.startsWith('<PathOfBuilding');
 
-    const hasPathOfBuildingTag = trimmedXml.includes('<PathOfBuilding');
+    const hasPathOfBuildingTag =
+      trimmedXml.includes('<PathOfBuilding2') || trimmedXml.includes('<PathOfBuilding>');
 
     if (!isValidXmlStart || !hasPathOfBuildingTag) {
       return {

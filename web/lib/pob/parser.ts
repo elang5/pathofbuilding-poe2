@@ -71,18 +71,17 @@ export function parsePobXml(xml: string): ParseResult {
     const parser = new XMLParser(parserOptions);
     const parsed = parser.parse(xml);
 
-    // Step 3: Validate root element
-    if (!parsed.PathOfBuilding) {
+    // Step 3: Validate root element (PoE1 uses PathOfBuilding, PoE2 uses PathOfBuilding2)
+    const pob = parsed.PathOfBuilding2 || parsed.PathOfBuilding;
+    if (!pob) {
       return {
         success: false,
         error: {
           type: 'MALFORMED_XML',
-          message: 'Missing PathOfBuilding root element',
+          message: 'Missing PathOfBuilding/PathOfBuilding2 root element',
         },
       };
     }
-
-    const pob = parsed.PathOfBuilding;
 
     // Step 4: Extract and validate Build section
     // Allow empty Build element
