@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathOfBuilding>
+  <Build
+    level="90"
+    targetVersion="3_0"
+    className="Witch"
+    ascendClassName="Necromancer"
+    mainSocketGroup="1"
+    viewMode="TREE"
+    characterName="TestMinion">
+
+    <PlayerStat stat="Life" value="4521"/>
+    <PlayerStat stat="EnergyShield" value="1200"/>
+    <PlayerStat stat="CombinedDPS" value="1523456"/>
+  </Build>
+
+  <Tree activeSpec="1">
+    <Spec
+      id="1"
+      title="Main"
+      treeVersion="3_21"
+      nodes="12345,12346,12347,26725,36634,41263,48768,55190,61666"
+      ascendAlloc="67890,67891,67892,67893">
+      <EditedNodes/>
+      <URL/>
+      <Sockets>
+        <Socket nodeId="26725" itemId="1"/>
+        <Socket nodeId="36634" itemId="2"/>
+      </Sockets>
+    </Spec>
+  </Tree>
+
+  <Skills activeSkillSet="1">
+    <SkillSet id="1">
+      <Skill
+        mainActiveSkill="1"
+        slot="Body Armour"
+        enabled="true"
+        includeInFullDPS="true">
+        <Gem
+          skillId="SummonSkeletons"
+          nameSpec="Summon Skeletons"
+          level="20"
+          quality="20"
+          qualityId="Default"
+          enabled="true"/>
+        <Gem
+          skillId="SupportMinionDamage"
+          nameSpec="Minion Damage Support"
+          level="20"
+          quality="20"
+          enabled="true"/>
+        <Gem
+          skillId="SupportMinionLife"
+          nameSpec="Minion Life Support"
+          level="20"
+          quality="20"
+          enabled="true"/>
+      </Skill>
+    </SkillSet>
+  </Skills>
+
+  <Items activeItemSet="1">
+    <ItemSet id="1">
+      <Slot name="Weapon 1" itemId="1"/>
+      <Slot name="Body Armour" itemId="2"/>
+      <Slot name="Helmet" itemId="3"/>
+    </ItemSet>
+
+    <Item id="1">
+Rarity: Unique
+Femur of the Saints
+Primordial Staff
+Quality: 20
+Sockets: B-B-B-B-B-B
+LevelReq: 58
+Implicits: 1
++18% Chance to Block Attack Damage while wielding a Staff
+Socketed Gems are Supported by Level 20 Minion Life
+80% reduced Skeleton Duration
++2 to Level of all Minion Skill Gems
+Minions deal 30% more Damage
++3 to maximum number of Skeletons
+    </Item>
+
+    <Item id="2">
+Rarity: Rare
+Doom Shell
+Vaal Regalia
+Quality: 20
+LevelReq: 68
+Implicits: 0
++92 to maximum Life
++42% to Fire Resistance
++38% to Cold Resistance
+Recover 5% of Energy Shield when you Block
+    </Item>
+
+    <Item id="3">
+Rarity: Rare
+Gale Hood
+Bone Helmet
+LevelReq: 73
+Implicits: 1
+Minions deal 40% increased Damage
++75 to maximum Life
++45% to Cold Resistance
++39% to Lightning Resistance
+Minions have +12% to all Elemental Resistances
+    </Item>
+  </Items>
+
+  <Config>
+    <Input name="resistancePenalty" number="0"/>
+    <Input name="enemyLevel" number="83"/>
+    <Input name="enemyIsBoss" boolean="true"/>
+    <Input name="usePowerCharges" boolean="true"/>
+    <Input name="useFrenzyCharges" boolean="false"/>
+    <Input name="conditionOnConsecratedGround" boolean="true"/>
+  </Config>
+
+  <Notes>
+This is a test minion build for the PoE2 Build Coach.
+
+Leveling: Start with basic minion skills and scale with minion nodes on tree.
+Playstyle: Summon skeletons and let them do the work.
+  </Notes>
+</PathOfBuilding>
