@@ -505,10 +505,13 @@ function generateDefenseExplanation(
 
   if (vulnerabilities.length === 0) {
     explanation += 'Your defenses are well-rounded with no critical vulnerabilities!';
-  } else if (vulnerabilities[0].severity === 'critical') {
-    explanation += `CRITICAL: ${vulnerabilities[0].description}. ${vulnerabilities[0].impact} Fix this immediately!`;
   } else {
-    explanation += `Your main vulnerability is ${vulnerabilities[0].type} damage. ${vulnerabilities[0].impact}`;
+    const topVuln = vulnerabilities[0];
+    if (topVuln?.severity === 'critical') {
+      explanation += `CRITICAL: ${topVuln.description}. ${topVuln.impact} Fix this immediately!`;
+    } else if (topVuln) {
+      explanation += `Your main vulnerability is ${topVuln.type} damage. ${topVuln.impact}`;
+    }
   }
 
   return explanation;

@@ -57,10 +57,8 @@ export function analyzeDamage(build: Build): DamageAnalysis {
   const scalingOpportunities = identifyScalingOpportunities(build, scalingBreakdown);
 
   // Calculate final DPS from the pipeline
-  const totalDps =
-    scalingBreakdown.length > 0
-      ? scalingBreakdown[scalingBreakdown.length - 1].afterValue
-      : 0;
+  const lastStep = scalingBreakdown[scalingBreakdown.length - 1];
+  const totalDps = lastStep?.afterValue || 0;
 
   const explanation = generateDamageExplanation(build, scalingBreakdown);
 
@@ -381,7 +379,8 @@ function generateDamageExplanation(build: Build, steps: ScalingStep[]): string {
     return 'No damage scaling detected. Make sure your build has skills configured.';
   }
 
-  const totalDps = steps[steps.length - 1].afterValue;
+  const lastStep = steps[steps.length - 1];
+  const totalDps = lastStep?.afterValue || 0;
   const moreStep = steps.find((s) => s.category === 'more');
 
   let explanation = `Your build deals approximately ${totalDps.toFixed(0)} DPS. `;

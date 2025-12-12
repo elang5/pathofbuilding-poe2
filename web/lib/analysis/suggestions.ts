@@ -286,23 +286,27 @@ export function getTopSuggestion(suggestionSet: SuggestionSet): Suggestion {
     (s) => s.priority === 'critical' || s.priority === 'high'
   );
 
-  if (criticalImmediate.length > 0) {
-    return criticalImmediate[0];
+  const criticalSuggestion = criticalImmediate[0];
+  if (criticalSuggestion) {
+    return criticalSuggestion;
   }
 
   // Fall back to any immediate suggestion
-  if (suggestionSet.immediate.length > 0) {
-    return suggestionSet.immediate[0];
+  const immediateSuggestion = suggestionSet.immediate[0];
+  if (immediateSuggestion) {
+    return immediateSuggestion;
   }
 
   // Fall back to short-term
-  if (suggestionSet.shortTerm.length > 0) {
-    return suggestionSet.shortTerm[0];
+  const shortTermSuggestion = suggestionSet.shortTerm[0];
+  if (shortTermSuggestion) {
+    return shortTermSuggestion;
   }
 
   // Fall back to long-term
-  if (suggestionSet.longTerm.length > 0) {
-    return suggestionSet.longTerm[0];
+  const longTermSuggestion = suggestionSet.longTerm[0];
+  if (longTermSuggestion) {
+    return longTermSuggestion;
   }
 
   // Default fallback
