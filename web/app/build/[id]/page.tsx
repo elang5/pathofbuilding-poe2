@@ -10,6 +10,9 @@ import { Button, Alert } from '@/components/ui';
 import { BuildOverview } from '@/components/build/BuildOverview';
 import { PassiveTreeSummary } from '@/components/build/PassiveTreeSummary';
 import { ConfigDisplay } from '@/components/build/ConfigDisplay';
+import { SkillsDisplay } from '@/components/build/SkillsDisplay';
+import { ItemsDisplay } from '@/components/build/ItemsDisplay';
+import { StatsEducational } from '@/components/build/StatsEducational';
 import { CoachingSection } from '@/components/coaching/CoachingSection';
 import type { Build } from '@/lib/domain';
 
@@ -109,6 +112,9 @@ export default function BuildPage() {
           {/* Overview */}
           <BuildOverview build={build} />
 
+          {/* Educational Stats Breakdown */}
+          <StatsEducational build={build} />
+
           {/* Two Column Layout */}
           <div className="grid gap-6 lg:grid-cols-2">
             {/* Passive Tree */}
@@ -117,6 +123,12 @@ export default function BuildPage() {
             {/* Configuration */}
             <ConfigDisplay config={build.config} />
           </div>
+
+          {/* Skills */}
+          <SkillsDisplay skills={build.skills} />
+
+          {/* Items */}
+          <ItemsDisplay items={build.items} />
 
           {/* Build Coach */}
           <CoachingSection build={build} />
