@@ -10,6 +10,7 @@ import { Button, Alert } from '@/components/ui';
 import { BuildOverview } from '@/components/build/BuildOverview';
 import { PassiveTreeSummary } from '@/components/build/PassiveTreeSummary';
 import { ConfigDisplay } from '@/components/build/ConfigDisplay';
+import { CoachingSection } from '@/components/coaching/CoachingSection';
 import type { Build } from '@/lib/domain';
 
 export default function BuildPage() {
@@ -116,13 +117,8 @@ export default function BuildPage() {
             <ConfigDisplay config={build.config} />
           </div>
 
-          {/* Placeholder for future sections */}
-          <Alert variant="info" title="More Features Coming Soon!">
-            <p>
-              Future updates will include detailed item analysis, skill breakdowns, damage
-              calculations, and defensive layer analysis.
-            </p>
-          </Alert>
+          {/* Build Coach */}
+          <CoachingSection build={build} />
         </div>
       </div>
     </div>
